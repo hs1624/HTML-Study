@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="back">
+    <input type="radio" name="a"onchange="changeColor('red')">빨
+    <input type="radio" name="a" onchange="changeColor('green')">초
+    <input type="radio" name="a" onchange="changeColor('yellow')">노
+
+    <script>
+        function changeColor(colorName) {
+            console.log(colorName);
+            document.getElementById('back').style.backgroundColor = colorName;
+        }
+    </script>
+</body>
+
+</html>
