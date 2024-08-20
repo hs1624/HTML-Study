@@ -46,6 +46,24 @@
             cursor: pointer;
             
         }
+
+        :hover {
+            color: #999;
+        }
+
+        label {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        label::before {
+            content: '*';
+            color: red;
+        }
+        label::after{
+            content: '!';
+            color: green;
+        }
+
     </style>
 
 </head>

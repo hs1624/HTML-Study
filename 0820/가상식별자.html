@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상 식별자</title>
+    <style>
+        a{
+            display: block;
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+        }
+        a:hover {
+            color: blue;
+            border-color: #999;
+        }
+        
+        label {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        label::before {
+            content: '*';
+            color: red;
+        }
+        label::after{
+            content: '!';
+            color: green;
+        }
+
+        a:link {
+            color: aquamarine;
+        }
+
+    </style>
+</head>
+<body>
+    <a href="https://google.com">구글</a>
+    <a href="https://gwram.com">??</a>
+    <a href="https://jdfhmo.com">?????</a>
+
+</body>
+</html>

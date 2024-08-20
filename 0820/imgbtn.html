@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cat_img {
+            background-image: url("./img/4q.jpg");
+            background-size: cover;
+            
+        }
+
+        input:hover {
+            border-color: crimson;
+        }
+            
+        .img_result {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>    
+    
+    <input type="button" value="이미지 보이기"  onclick="showImg('img_result')">
+    <div id="img_result" class="img_result cat_img"></div>
+
+    <script>
+        function showImg(img_result) {
+            let Imgc = document.getElementById(img_result);
+            
+            if(Imgc.style.display == "block") {
+                Imgc.style.display = "none";
+            } else {
+                Imgc.style.display = "block";
+            }            
+        }
+    </script>
+
+</body>
+</html>
