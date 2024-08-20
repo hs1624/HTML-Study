@@ -16,13 +16,33 @@
             background-image: url("./img/4q.jpg");
         }
 
+        .gra {
+
+            margin-top: 20px;
+            width: 500px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+
+        .back-gradiend {
+            background: linear-gradient(to right, red 0% , yellow 50%, blue 100%);
+        }
+        .back-gradiend2 {
+            background: linear-gradient(50deg red 0%, blue 100%);
+        }
+        .back-gradiend3 {
+            background: radial-gradient(circle at 10% 50%,red,blue,yellow);
+        }
+        
     </style>
 
 </head>
 <body>
     
     <img src="./img/4q.jpg" alt='고양이사진'>
-
+    <div class="gra back-gradiend"></div>
+    <div class="gra back-gradiend2"></div>
+    <div class="gra back-gradiend3"></div>
 
 </body>
 </html>
