@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자식 식별자</title>
+    <style>
+        ul > li:nth-child(1) {
+            background-color: yellow;
+        }
+        ul > li:nth-child(3n) {
+            background-color: orange;
+        }
+        ul > li:nth-child(3n+1) {
+            background-color: orangered;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        tr, td {
+            border: 1px solid black;
+        }
+        td {
+            padding: 20px 50px;
+        }
+        tr > td:nth-child(2) {
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>사과</li>
+        <li>아오리사과</li>
+        <li>오렌지</li>
+        <li>귤</li>
+        <li>용과</li>
+        <li>모과</li>
+        <li>무화과</li>
+        <li>다과</li>
+    </ul>
+
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+</body>
+</html>
