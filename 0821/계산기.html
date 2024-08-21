@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCal</title>
+</head>
+<body>
+    <input type="text"  id="fnum">+<input type="text" id="snum">
+    =<input type="text" id="calresult">
+    <input type="button" value="더하기" onclick="결과구하기()">
+    <script>
+       let sum1 = document.getElementById('fnum');
+        let sum2 = document.getElementById('snum');
+        let r = document.getElementById('calresult');
+       
+        function 결과구하기() {
+          r. value = parseInt(sum1.value)+ parseInt(sum2.value);
+        }
+
+    </script>
+</body>
+</html>
