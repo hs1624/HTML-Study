@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>999999999</title>
+
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f8;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 80%;
+        }
+
+        input,button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #outputTable {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            /* 테이블의 너비를 컨테이너에 맞춤 */
+            border-collapse: collapse;
+            /* 테두리 간격 없애기 */
+            margin: 15px 0;
+            /* 위아래 마진 추가 */
+        }
+
+        th,td {
+            border: 1px solid #ccc;
+            /* 세포 주변에 회색 테두리 추가 */
+            padding: 10px;
+            /* 세포 내부의 패딩 */
+            text-align: left;
+            /* 텍스트 왼쪽 정렬 */
+            color: #333;
+            /* 글자색 설정 */
+        }
+
+        th {
+            background-color: #007BFF;
+            /* 제목 셀 배경색 설정 */
+            color: white;
+            /* 제목 글자색 흰색으로 설정 */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+            /* 짝수 줄에 대한 배경색 설정 */
+        }
+
+        tr:hover {
+            background-color: #ddd;
+            /* 마우스 호버 시 배경색 변경 */
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td><input type="number" id="num1" min="1" max="9" placeholder="첫 번째 수" autocomplete="off"></td>
+            <td>
+                <input type="number" id="num2" min="1" max="9" placeholder="두 번째 수" autocomplete="off"> 
+                <input type="button" value="결과" onclick="결과()">
+            </td>
+        </tr>
+    </table>
+    
+    <div id="output"></div> 
+    
+    <script>
+        function 결과() {
+    const num1 = Number(document.getElementById('num1').value);
+    const num2 = Number(document.getElementById('num2').value);
+    const output = document.getElementById('output');
+
+
+   
+    const mulResult = num1 * num2;
+
+  
+    let tableHTML = '<table><tr><th>곱한.</th><th>결과</th></tr>';
+
+        for (let i = 1; i <= num2; i++) {
+        const result = num1 * i;
+        if (result <= mulResult) {
+            tableHTML += `<tr><td>${num1} x ${i}</td><td>${result}</td></tr>`;
+        }
+    }
+    
+    tableHTML += '</table>';
+
+    // 결과 출력
+    output.innerHTML = tableHTML;
+}
+
+    </script>
+    
+</body>
+</html>

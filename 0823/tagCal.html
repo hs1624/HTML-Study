@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,24 +13,22 @@
         <option value="-">-</option>
     </select>
     <input type="text" placeholder="두 번째 수">
-    <input type="button" value="계산" onclick="result()">
-    <input type="text" placeholder="결과 출력">
-
+    <input type="button" value="계산" onclick="값구하기()">
+    
+    <span name="math"></span>
     <script>
         let inputs = document.getElementsByTagName('input');
         let select = document.getElementsByTagName('select');
+        const result = document.querySelector('span');
 
-        function result(){
+        function 값구하기() {
             if (select[0].value == '+') {
-                inputs[3].value = Number(inputs[0].value) + Number(inputs[1].value);
+                result.innerText = Number(inputs[0].value) + Number(inputs[1].value);
             }
             else if (select[0].value == '-') {
-                inputs[3].value = Number(inputs[0].value) - Number(inputs[1].value);
+                result.innerText = Number(inputs[0].value) - Number(inputs[1].value);
             }
-
         }
-
-
     </script>
 </body>
 </html>
