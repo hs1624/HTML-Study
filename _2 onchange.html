@@ -6,30 +6,31 @@
     <title>Document</title>
 </head>
 <body>
-    <select id="menu01" onchange="box()">
+    <select id="menu01" onchange="box(event)">
         <option value="coffee">커피</option>
         <option value="cake">케이크</option>
     </select>
     <select id="menu02">
-        <option>아메리카노</option>
-        <option>카라멜마끼아토</option>
+    
     </select>
     
 <script>
-    
 
-    function box() {
-        let c1 = document.getElementById('menu01').value;
+    function box(e) {
+        console.log(e.target);
+        let c1 = document.getElementById('menu01');
         let c2 = document.getElementById('menu02');
+        let str = '선택 전';
 
-        if(c1 == 'coffee'){
-                Str='<option>아메리카노</option><option>카라멜마끼아토</option>';
-            }else{
-                Str = '<option>생크림케이크</option><option>초코케이크</option>';
-            }
-            console.log(c1);
-            c2.innerHTML = Str;
+        if(c1.value == 'coffee'){
+            str += '<option>카푸치노</option>';             
+            str += '<option>카라멜 마끼아토</option>';             
+        } else if (c1.value) {
+            str += '<option>생크림케이크</option>';             
+            str += '<option>초콜릿케이크</option>';             
         }
+        c2.innerHTML = str;
+    }
 
 
 </script>
