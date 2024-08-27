@@ -6,6 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <input type="text" id="id" placeholder="입력">
+    <input type="button" value="버튼" onclick="출력()">
+    <span id="result">결과출력</span>
+
+<script>
+
+    function 출력() {
+        let i = document.getElementById("id").value;
+        let s = document.getElementById("result");
+
+        alert("버튼 눌림 감지됨 , 버튼을 눌러 결과를 확인");
+        
+        s.innerText = i;
+
+
+    }
+
+</script>
+
+
 </body>
 </html>
