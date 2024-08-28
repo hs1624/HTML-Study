@@ -105,7 +105,7 @@
         let str = ''; // 기존 이미지를 초기화
         console.log(list);
         for(let i = 0;i < list.length ; i++){
-                if(category===list[i].category || category === 'undefined'){
+                if(category===list[i].category || category === undefined){
                     str += '<div class="photo" style="background-image:url(' +list[i].pic+ ')" onclick="loadmainpic(\'' + list[i].pic + '\')"></div>'
                 }
             }
