@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+let click = () => {
+    let obj1 = {};
+    let obj2 = {};
+
+    obj1.fn = document.getElementById('fn').value;
+    obj1.sn = document.getElementById('sn').value;
+
+    let obj = {};
+    obj2.div = obj1.fn / obj1.sn; 
+    obj2.minus = obj1.fn - obj1.sn; 
+    obj2.mul = obj1.fn * obj1.sn; 
+    obj2.plus = Number(obj1.fn) + Number(obj1.sn); 
+    
+    console.log(obj);
+
+}
+    </script>
+</body>
+</html>
