@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음식 사진</title>
+    <style>
+
+
+        /** main tool */
+        .picMain {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /** 음식사진 메인 */
+        .mainPic {
+            width: 100px;
+            height: 250px;
+        }
+
+        /** 음식사진 보조 **/
+        .suvPic {
+            width: 100%;
+            height: 100vh;
+        }
+
+        /** 갤러리 스타일 */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 15px;
+        }
+
+        .photo {
+            width: calc(33% - 40px);
+            /* 너비 설정, 마진을 고려한 계산 */
+            margin: 20px;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        /** 버튼 공간 */
+        .btn_area {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            height: 70px;
+        }
+
+        .btn01 {
+            margin: 15px;
+            padding: 15px;
+            height: 30px;
+            border-radius: 15px;
+            font-size: 25px;
+            font-weight: bold;
+            align-items: center;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="picMain">
+        <div class="mainPic"></div>
+        <div class="suvPic">
+            <div class="btn_area">
+                <div class="btn01" onclick="result('cookie')">쿠키</div>
+                <div class="btn01" onclick="result('cake')">케이크</div>
+            </div>
+            <!-- 사진첩 갤러리 -->
+            <div class="gallery" id="gall">
+                <div class="photo">사진 1</div>
+                <div class="photo">사진 2</div>
+                <div class="photo">사진 3</div>
+                <div class="photo">사진 4</div>
+                <div class="photo">사진 4</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        
+        const pic = [ {pic:'img/pic1.jpg', category: 'cake'},
+        {pic:'img/pic2.jpg', category: 'cake'},
+        {pic:'img/pic3.jpg', category: 'cookie'},
+        {pic:'img/pic4.jpg', category: 'cookie'},
+        {pic:'img/pic5.jpg', category: 'cookie'}
+        ];
+    
+        result('undefined');
+
+        function result(category) {
+        let gallery = document.querySelector('.gallery');
+        let list = pic;
+        let str = ''; // 기존 이미지를 초기화
+        console.log(list);
+        for(let i = 0;i < list.length ; i++){
+                if(category===list[i].category || category === 'undefined'){
+                    str += '<div class="photo" style="background-image:url(' +list[i].pic+ ')" onclick="loadmainpic(\'' + list[i].pic + '\')"></div>'
+                }
+            }
+            gallery.innerHTML=str;
+        }
+        
+        function loadmainpic(imagePath) {
+            document.querySelector('.mainPic').style.backgroundImage = "url('" + imagePath + "')";
+        }
+
+    </script>
+</body>
+</html>
