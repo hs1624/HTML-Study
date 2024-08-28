@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="button" value="출력" onclick="Resultclick()">
+    <span id="result">출력</span>
+
+<script>
+
+    let obj1 = {};
+
+    obj1.a = 'apple';
+    obj1.b = 'banana';
+    obj1.fun = start;
+    console.log(typeof(obj1), obj1);
+
+    let arr = ['a','b','c'];
+    obj1.arr = arr;
+    console.log(obj1);
+
+    let obj2 = new Object();
+    obj2['apple'] = 'apple';
+    obj2['b'] = 'banana';
+    obj2.address = '서울';
+    console.log(obj2);
+    obj1.obj = obj2;
+    console.log(obj1);
+
+
+    //obj1.fun();
+
+    function start() {
+        alert('start');
+        console.log('start');
+    }
+    
+    function Resultclick() {
+        document.getElementById('result').innerText = obj1.obj.address;
+    }
+
+</script>
+
+</body>
+</html>
