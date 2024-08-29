@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery 시작</title>
+    <style>
+        input {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="user" value="hello">
+    <script src="/lib/jquery-3.7.1.js"></script>
+    <script>
+        let jq = $('#user').val();
+        console.log(jq);
+
+        console.log($('#user'));
+        
+        
+        console.log(document.querySelectorAll('#user'));
+
+        console.log($('input').val());
+
+        
+
+    </script>
+</body>
+</html>
