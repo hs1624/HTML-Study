@@ -7,6 +7,7 @@
 </head>
 <body>
     <script>
+        var start = new Date;
         //현재 pc 기준으로 날짜 정의. (클라이언트 기준이며 서버에 저장시엔 활용하면 안됨)
         let today = new Date();
         console.log("년도: ", today.getFullYear());
@@ -15,10 +16,37 @@
         console.log(today);
         
         //setInterval(함수, 몇초마다 반복할 것(int));
-        setInterval(function() {
-            console.log(String(today.getHours()), '-',String(today.getMinutes()),'-',String(today.getSeconds()));
-        }, 1000); //1초는 1000.
+        // setInterval(function() {
+        //     console.log(String(today.getHours()), '-',String(today.getMinutes()),'-',String(today.getSeconds()));
+        //     console.log(Date.now());
+        // }, 1000); //1초는 1000.
 
+        // clock();
+        // function clock() {
+        //     setTimeout(function() {
+        //         alert('test');
+        //         clock();
+        //     }, 2000);
+        // }
+
+        function showClock() {
+            var crrDate = new Date();
+            var divClock = document.getElementById("divClock");
+            var since = Math.ceil((crrDate-start)/1000);
+
+            var msg = "현재 시간: " + crrDate.getHours() + "시 ";
+            msg += crrDate.getMinutes() + "분 ";
+            msg += crrDate.getSeconds() + "초\n";
+            msg += "접속 후 " + since + "초 경과";
+
+            divClock.innerText = msg;
+
+            setTimeout(showClock, 1000);
+        }
     </script>
+    <body onload="showClock()">
+        <div id="divClock" class="clock">    
+        </div>
+    </body>
 </body>
 </html>
