@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>컨트롤하기</title>
+	<style>
+		
+		body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+		input[type="text"],
+        input[type="button"],
+        select {
+            margin-top: 10px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        #result {
+            border: 1px solid #000;
+            display: inline-block;
+            text-align: center;
+            overflow: hidden;
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+	</style>
+
+	</head>
+	<body>
+		<table border="0" cellpadding="3" cellspacing="0">
+			<tr>
+				<td>
+					<input type="text" id="tbString" placeholder="텍스트를 입력하세요">
+					<input type="button" value="미리 보기" onclick="send()">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					색상: 
+					<select id="fontColor">
+						<option value="red">빨강</option>
+						<option value="green">초록</option>
+						<option value="blue">파랑</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					크기: 
+					<select id="fontSize">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="lineThrough">취소선
+					<input type="checkbox" id="bold">두껍게
+					<input type="checkbox" id="italic">기울임
+					<input type="checkbox" id="larger">크게
+					<input type="checkbox" id="smaller">작게
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" id="super">위첨자
+					<input type="checkbox" id="sub">아래첨자
+					<input type="checkbox" id="lowercase">소문자로
+					<input type="checkbox" id="uppercase">대문자로
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span id="result">미리 보기가 여기에 표시됩니다</span>
+				</td>
+			</tr>
+		</table>
+	
+		<script src="/lib/jquery-3.7.1.js"></script>
+		<script>
+			function send() {
+				// 입력 텍스트 가져오기
+				let text = $('#tbString').val().trim();
+				if (!text) {
+					alert('텍스트를 입력하세요.');
+					return;
+				}
+	
+				// 선택된 색상과 크기 가져오기
+				let color = $('#fontColor').val();
+				let size = parseFloat($('#fontSize').val()); // 크기값을 숫자로 변환
+	
+				// 결과 요소 초기화
+				$('#result').empty(); // 기존 내용 지우기
+	
+				// 텍스트와 기본 스타일 적용
+				$('#result').text(text);
+	
+				// 색상 및 크기 적용
+				$('#result').css('color', color);
+				$('#result').css('font-size', size + 'em');
+	
+				// 체크박스 상태에 따라 스타일 적용
+				$('#result').css('text-decoration', $('#lineThrough').is(':checked') ? 'line-through' : 'none');
+				$('#result').css('font-weight', $('#bold').is(':checked') ? 'bold' : 'normal');
+				$('#result').css('font-style', $('#italic').is(':checked') ? 'italic' : 'normal');
+	
+				// 크기 조정 체크박스 적용
+				if ($('#larger').is(':checked')) {
+					size += 1;
+				}
+				if ($('#smaller').is(':checked')) {
+					size -= 1;
+				}
+				$('#result').css('font-size', size + 'em');
+	
+				// 첨자 및 대소문자 체크박스 적용
+				$('#result').css('vertical-align', $('#super').is(':checked') ? 'super' : $('#sub').is(':checked') ? 'sub' : 'baseline');
+				$('#result').css('text-transform', $('#lowercase').is(':checked') ? 'lowercase' : $('#uppercase').is(':checked') ? 'uppercase' : 'none');
+			}
+		</script>
+	</body>
+</html>
