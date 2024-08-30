@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+<body>
+    <input type="button" value="전송" onclick="send()">
+    <script src="/lib/jquery-3.7.1.js"></script>
+    <script>
+        function send() {
+            $.ajax({
+            url: 'https://jsonplaceholder.typicode.com/posts',
+            type: 'get',
+            dataType: 'json',
+            success: function(res) {
+                console.log(res);
+            }
+            
+        })
+    }
+    </script>
+</body>
+</html>
