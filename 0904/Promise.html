@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <button type="button" class="btn btn-outline-primary" onclick="time()">Promise</button>
+    <button type="button" class="btn btn-outline-primary" onclick="promi()">Promise</button>
+    <button type="button" class="btn btn-outline-primary" onclick="aj()">비동기 통신</button>
+    <button type="button" class="btn btn-outline-primary" onclick="ay()">비동기 통신</button>
+
+
+    <script src="/lib/jquery-3.7.1.js"></script>
+    <script>
+
+        async function ay() {
+           await $.ajax({
+        url: 'http://localhost:3000/send1',
+        type: 'post',
+        data: JSON.stringify(obj),
+        contentType: 'application/json',
+        success: function(res) {
+            console.log(res);
+        
+            resolve(res);
+
+        },
+        error: function(xhr, status,error) {
+            reject(status);
+        }
+    });
+
+        
+        function aj() {
+        let result = new Object();
+
+        let obj = {name: '슈퍼맨'};
+        console.log(obj);
+        new Promise((resolve, reject) => {
+
+            
+        $.ajax({
+        url: 'http://localhost:3000/send1',
+        type: 'post',
+        data: JSON.stringify(obj),
+        contentType: 'application/json',
+        success: function(res) {
+            console.log(res);
+        
+            resolve(res);
+
+        },
+        error: function(xhr, status,error) {
+            reject(status);
+        }
+    });
+})
+
+.then(result => {
+    console.log('성공: ', result);
+})
+.catch(result => {
+    console.log('error: ', result);
+})
+
+}
+
+
+        function promi() {
+            let pro = new Promise(function(resolve,reject) {
+
+                let check = true;
+                if(check) {
+                    resolve('빨강색');
+                }
+                else {
+                    reject('파랑색');
+                }
+
+            }); 
+
+            pro
+            .then(result => {
+                console.log(result);
+            })
+            .catch(result => {
+                console.log(result);
+            })
+            .finally(() => {
+                console.log('무조건 실행');
+            })
+
+            //let pro2 = new Promise((resolve,reject) => {
+
+        }
+    }   
+        function time() {
+            setTimeout(function() {
+                console.log('set Time OUT');
+                
+                console.log('실행 영역');
+                setTimeout(function () {
+
+                })
+            });
+        }
+    
+    </script>
+</body>
+</html>

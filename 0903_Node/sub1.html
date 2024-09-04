@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: white;
+        }
+
+        table {
+            width: 60%;
+            margin: 20px auto;
+            /* 수정: 테이블을 화면 가운데 정렬 */
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .normal-text {
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="rs">
+        <table>
+            <tr>
+                <td colspan="3" style="background-color: mediumpurple;">회원 기본 정보</td>
+            </tr>
+            <tr>
+                <td>아이디: <input type="text" name="id" maxlength="12"><span class="normal-text">&nbsp;4~12자의 영문 대소문자와
+                        숫자로만</span></td>
+            </tr>
+            <tr>
+                <td>비밀번호: <input type="password" name="pw" maxlength="12"><span class="normal-text">&nbsp; 4~12자의 영문
+                        대소문자와 숫자로만</span></td>
+            </tr>
+            <tr>
+                <td>비밀번호 확인: <input type="password" name="pw" maxlength="12"></td>
+            </tr>
+            <tr>
+                <td>메일주소: <input type="text" name="email" maxlength="20"><span class="normal-text">&nbsp; 예)
+                        id@domain.com</span></td>
+            </tr>
+            <tr>
+                <td>이름: <input type="text" name="name" maxlength="20" autocomplete="off"></td>
+            </tr>
+            <tr>
+                <td colspan="3" style="background-color: mediumpurple;">개인 정보</td>
+            </tr>
+            <tr>
+                <td>주민등록번호: <input type="text" maxlength="15" name="jumin1" autocomplete="off"> - <input type="password"
+                        name="jumin2"><span class="normal-text"> 예)123456-1234567</span></td>
+            </tr>
+            <tr>
+                <td>생일: <input type="text" name="birth" size="6"><span class="normal-text">년</span>
+                    <select id="birthMonth">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select><span class="normal-text">월</span>
+                    <select id="birthDay">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                    </select><span class="normal-text">일</span>
+                </td>
+            </tr>
+            <tr>
+                <td>관심분야(취미):
+                    <input type="radio" name="hobby" value="1">게임
+                    <input type="radio" name="hobby" value="2">운동
+                    <input type="radio" name="hobby" value="3">요리
+                    <input type="radio" name="hobby" value="4">악기 연주
+                    <input type="radio" name="hobby" value="5">영화 감상
+                </td>
+            </tr>
+            <tr>
+                <td>자기소개: <textarea name="intr" id="intr"></textarea></td>
+            </tr>
+
+            <tr>
+                <td colspan="3" style="text-align: center;">
+                    <input type="button" value="회원가입" onclick="가입2()">
+                    <input type="button" value="다시 가입" onclick="입력초기화()">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    <script src="/lib/jquery-3.7.1.js"></script>
+    <script>
+        function 가입() {
+            const userRegex = /^[A-Za-z0-9]{4,12}$/; // 사용자 정보 유효성검사
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 이메일
+            const part1Regex = /^\d{6}$/;  // 주민등록번호 앞자리
+            const part2Regex = /^\d{7}$/;  // 뒷자리
+
+            let isValid = true;
+            let useridField = document.getElementsByName('id')[0];
+            let passwordField = document.getElementsByName('pw')[0];
+            let passwordConfirmField = document.getElementsByName('pw')[1];
+            let emailField = document.getElementsByName('email')[0];
+            let jumin1Field = document.getElementsByName('jumin1')[0];
+            let jumin2Field = document.getElementsByName('jumin2')[0];
+            let nameField = document.getElementsByName('name')[0];
+            let birthField = document.getElementsByName('birth')[0];
+            let ra = document.getElementsByName('hobby');
+
+            if (useridField.value.length == 0) {
+                alert("아이디를 적어주세요");
+                useridField.focus();
+                isValid = false;
+                return;
+            } else if (!userRegex.test(useridField.value)) {
+                alert("올바른 ID를 써주세요");
+                useridField.focus();
+                isValid = false;
+                return;
+            }
+
+            if (passwordField.value.length == 0) {
+                alert("비밀번호를 적어주세요");
+                passwordField.focus();
+                isValid = false;
+                return;
+            } else if (!userRegex.test(passwordField.value)) {
+                alert("올바른 비밀번호를 써주세요");
+                passwordField.focus();
+                isValid = false;
+                return;
+            }
+
+            if (passwordConfirmField.value !== passwordField.value) {
+                alert("비밀번호가 일치하지 않습니다");
+                passwordConfirmField.focus();
+                isValid = false;
+                return;
+            }
+
+            if (!emailRegex.test(emailField.value)) {
+                alert("올바른 이메일 주소를 입력하세요.");
+                emailField.focus();
+                isValid = false;
+                return;
+            }
+
+            if (nameField.value.length == 0) {
+                alert("이름을 적어주세요");
+                nameField.focus();
+                isValid = false;
+                return;
+            }
+
+            if (!part1Regex.test(jumin1Field.value) || !part2Regex.test(jumin2Field.value)) {
+                alert("올바른 주민등록번호를 적어주세요");
+                jumin1Field.focus();
+                isValid = false;
+                return;
+            }
+
+            if (Number(birthField.value) > new Date().getFullYear() || Number(birthField.value) < (new Date().getFullYear() - 100)) {
+                alert("생년월일을 정확하게 입력하세요.");
+                birthField.focus();
+                return;
+            }
+
+            let hobbySelected = false;
+            for (let i = 0; i < ra.length; i++) {
+                if (ra[i].checked) {
+                    hobbySelected = true;
+                    break;
+                }
+            }
+
+            if (!hobbySelected) {
+                alert("하나 이상의 취미를 선택하세요");
+                isValid = false;
+                return;
+            }
+
+            if (isValid) {
+                alert("회원가입 성공");
+            } else {
+                alert("회원가입 실패");
+                return;
+            }
+        }
+
+        function 가입2() {
+            let useridField = document.getElementsByName('id')[0];
+            let passwordField = document.getElementsByName('pw')[0];
+            let passwordConfirmField = document.getElementsByName('pw')[1];
+            let emailField = document.getElementsByName('email')[0];
+            let jumin1Field = document.getElementsByName('jumin1')[0];
+            let jumin2Field = document.getElementsByName('jumin2')[0];
+            let nameField = document.getElementsByName('name')[0];
+            let birthField = document.getElementsByName('birth')[0];
+            let ra = document.getElementsByName('hobby');
+
+            console.log($('input[name="hobby"]:checked').val());
+
+            //여기서부터 복사 영역
+            let joinObj = new Object();
+            joinObj.id = useridField.value;
+            joinObj.pw = passwordConfirmField.value;
+            joinObj.email = emailField.value;
+            joinObj.jumin1 = jumin1Field.value;
+            joinObj.jumin2 = jumin2Field.value;
+            joinObj.name = nameField.value;
+            joinObj.birth = birthField.value;
+            joinObj.hobby = $('input[name="hobby"]:checked').val();
+            joinObj.intr = document.getElementById('intr').value;
+
+            console.log(joinObj);
+
+            $.ajax({
+                url: 'http://localhost:3000/regist',
+                type: 'get',
+                data: joinObj,
+                dataType: 'json',
+                success: function(res) {
+                    console.log(res);
+                    if(res.status == 200) {
+                        let list = res.list;
+                        console.log(list);
+                    } else {
+                        alert('서버에 응답 오류 발생');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("ajax 요청 오류: ", error);
+                    alert("서버에 연결 할 수 없음. 다시 시도 바람!");
+                }
+            })
+        }
+
+
+        // function 입력초기화() {
+        //     document.getElementById('rs').reset();
+        // }
+
+    </script>
+</body>
+
+</html>
