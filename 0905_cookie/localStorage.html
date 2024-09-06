@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage 시작</title>
+</head>
+<body>
+    <input type="button" value="저장" onclick="save()">
+    <input type="button" value="불러오기" onclick="load()">
+    <input type="button" value="삭제" onclick="del()">
+    <input type="button" value="전체삭제" onclick="delALL()">
+    <input type="button" value="다음페이지" onclick="move()">
+
+    <script>
+
+        function del() {
+            localStorage.removeItem('key');
+        }
+        
+        function delALL() {
+            localStorage.clear();
+        }
+        
+
+        function save() {
+            localStorage.setItem('key', 'value');
+        }
+
+        function load() {
+            let test = localStorage.getItem('key');
+            console.log(test);
+        }
+
+        function move() {
+            location.href = 'locationItem.html';
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session</title>
+</head>
+<body>
+    <input type="button" value="저장" onclick="save()">
+    <input type="button" value="불러오기" onclick="load()">
+
+    <script>
+        function save() {
+            sessionStorage.setItem('se', '값');
+        }
+
+        function load() {
+            console.log(sessionStorage.getItem('se'));
+        }
+
+    </script>
+
+</body>
+</html>
