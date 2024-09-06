@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        table {
+            border: 1px solid lightgray;
+        }
+        tr>td:nth-child(1) {
+            text-align: center;
+            font-weight: bold;
+        }
+        .t_head {
+            background-color: rgb(159, 181, 255);
+        }
+        .t_title {
+            background-color: rgb(210, 220, 255);
+        }
+        .btn {
+            margin-top: 50px;
+            margin-left: 36%;
+            margin-right: 5px;
+        }
+        .intro {
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+    <script src="/HTML-Study/lib/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>로그인</h1>
+        <div class="form-group">
+            <label for="user_id">아이디:</label>
+            <input type="text" id="user_id" placeholder="아이디를 입력하세요">
+            <div class="error-message" id="user_id_error"></div>
+        </div>
+        <div class="form-group">
+            <label for="password_id">비밀번호:</label>
+            <input type="password" id="password_id" placeholder="비밀번호를 입력하세요">
+            <div class="error-message" id="password_id_error"></div>
+        </div>
+        <div class="form-group">
+            <button type="button" onclick="login()">로그인</button>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const userId = document.getElementById('user_id').value;
+            const password = document.getElementById('password_id').value;
+            let isValid = true;
+
+            // Clear all previous error messages
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+            if (userId.length == 0) {
+                document.getElementById('user_id_error').textContent = "아이디를 입력하세요";
+                isValid = false;
+                document.getElementById('user_id').focus();
+                return;
+            }
+
+            if (password.length == 0) {
+                document.getElementById('password_id_error').textContent = "비밀번호를 입력하세요";
+                isValid = false;
+                document.getElementById('password_id').focus();
+                return;
+            }
+            if (isValid) {
+                const obj = {
+                    userId: userId,
+                    password: password
+                };
+
+                $.ajax({
+                    url: 'http://localhost:3000/login',
+                    type: 'get',
+                    data: obj,
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.status == 200) {
+                            alert("로그인 성공");
+                        } else {
+                            alert("로그인 실패: " + res.message);
+                        }
+                    },
+                });
+                localStorage.setItem('id', userId);
+                location.href ='/idconfirm.html'
+            }
+
+        }
+    </script>
+
+</body>
+</html>

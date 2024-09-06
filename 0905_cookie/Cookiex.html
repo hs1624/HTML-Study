@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie</title>
+</head>
+<body>
+    <input type="button" value="쿠키 체크하기" onclick="getCookie()">
+    <input type="button" value="쿠키 저장" onclick="setCookie()"><br />
+
+    <script>
+        
+        //쿠키 생성
+        function setCookie() {
+            document.cookie = 'cook= value';
+        }
+        
+
+    </script>
+
+    <h1>쿠키 만료기간 만들기</h1>
+    <input type="button" value="쿠키 저장" onclick="setCookie()">
+    <input type="button" value="max-age" onclick="maxSave()"><br />
+    <input type="button" value="쿠키 체크하기" onclick="getCookie()"><br />
+    
+    <input type="input" id="inpName" placeholder="쿠키 이름 입력">
+    <input type="button" value="쿠키 값 가져오기" onclick="getNameCookie()">
+    <input type="button" value="쿠키 값 제거" onclick="delCookie()">
+
+
+
+    <script>
+
+        function delCookie() {
+            let cookName = document.getElementById('inpName');
+
+            console.log('삭제 대상 쿠키: ' , cookName.value);
+
+            document.cookie = cookName.value + '= ; max-age=-1';
+
+            cookName.value = '';
+            cookName.focus();
+
+        }
+
+        function getCookies() {
+            
+        }
+
+
+        function getNameCookie() {
+            let cookName = document.getElementById('inpName');
+            let va = getCookies(cookName.value);
+            console.log('value: ', va);
+        }
+
+
+        //쿠키에 만료기간을 설정하려면 expires 옵션을 추가해야합니다.
+        //expires는 시계 형식인 UTC, GMT 방식이 있다.
+        function setDayCookie() {
+
+            let date = new Date();
+            date.setTime(date.getTime() + (1000*60*60*24));
+            console.log(date.toUTCString());
+            let expires = 'expires= ' + date.toUTCString()+';';
+
+            document.cookie = 'day=cook;' + expires;
+
+        }
+        function getCookie() {
+            console.log(document.cookie);
+        }
+
+        function maxSave() {
+            document.cookie= 'obj=apple; max-age='+5;
+        }
+
+        //Secure - SSL 적용된 것만,쿠키가 실행 되도록 설정
+        // 보안을 위해서 만들어진 것.
+        //https에서만 동작 됨.
+        document.cookie = 'sec=value; Secure;';
+        
+        //Domain - 도메인 속성을 입력 안 할 경우, 디폴트로 현재 사이트의 도메인이 자동으로 입력됨.
+        //현재 페이지와 쿠키가 저장된 도메인이 일치하지 않으면, 쿠키가 실행되지 않음.
+        document.cookie = 'doc = banana; Domain=localhost';
+
+        //Path
+        document.cookie = 'pa=papa; path=/';
+        //서버에 대한 환경에 따라서 있는 경우가 있고 없는 경우가 존재함.
+        //한국은 ip가 너무 많기에 패스 가 없는 경우가 대부분이다.
+
+        //ip한 개로 여러 회사가 같이 사용함. => port로 구분함.
+
+
+
+    </script>
+
+</body>
+</html>
